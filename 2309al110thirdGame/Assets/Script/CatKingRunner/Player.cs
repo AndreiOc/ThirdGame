@@ -71,13 +71,17 @@ public class Player : MonoBehaviour
             if(!isHoldingJump)
                 velocity.y += gravity * Time.fixedDeltaTime;
 
+            Vector2 rayOrigin  = new Vector2(pos.x + 0.7f,pos.y);
+            Vector2 rayDirection = Vector2.up;
+            float rayDistance = velocity.y * Time.fixedDeltaTime;
+            RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin,rayDirection,rayDistance);
             ///Quando torno a terra risetto tutto 
-            if(pos.y <= groundHeight)
-            {
-                pos.y = groundHeight;
-                isGrounded = true;
+            // if(pos.y <= groundHeight)
+            // {
+            //     pos.y = groundHeight;
+            //     isGrounded = true;
 
-            }
+            // }
         }
         //Sto correndo in questo momento
         if(isGrounded)
@@ -93,6 +97,7 @@ public class Player : MonoBehaviour
         distance += velocity.x * Time.fixedDeltaTime;
         transform.position = pos; 
     }
+
 
     
 }
